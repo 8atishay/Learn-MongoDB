@@ -1,0 +1,64 @@
+> use ecommercedb
+switched to db ecommercedb
+
+> db.createCollection("brands");
+{ "ok" : 1 }
+
+> show collections
+brands
+
+> show databases
+admin        0.000GB
+config       0.000GB
+ecommercedb  0.000GB
+local        0.000GB
+
+> db.createCollection('categories');
+{ "ok" : 1 }
+
+> show collections
+brands
+categories
+
+> db.categories.drop();
+true
+
+> show collections
+brands
+
+////Creating Document////
+
+> db
+ecommercedb
+
+> db.brands.insert({"name":"Adidas", "Desc" : "About Adidas"});
+WriteResult({ "nInserted" : 1 })
+
+> db.brands.insert({"name":"Gucci", "Desc" : "About Gucci"});
+WriteResult({ "nInserted" : 1 })
+
+> db.brands.insert({"name":"Nike", "Desc" : "About Nike"});
+WriteResult({ "nInserted" : 1 })
+
+> db.brands.find();
+{ "_id" : ObjectId("5effa045c2bcd85bf0a4403f"), "name" : "Adidas", "Desc" : "About Adidas" }
+{ "_id" : ObjectId("5effa056c2bcd85bf0a44040"), "name" : "Gucci", "Desc" : "About Gucci" }
+{ "_id" : ObjectId("5effa061c2bcd85bf0a44041"), "name" : "Nike", "Desc" : "About Nike" }
+
+> db.brands.find({"name":"Nike"});
+{ "_id" : ObjectId("5effa061c2bcd85bf0a44041"), "name" : "Nike", "Desc" : "About Nike" }
+
+> db.brands.update({"name":"Nike"},{$set:{"name":"Nike","Desc":"Nike description"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+> db.brands.find({"name":"Nike"});
+{ "_id" : ObjectId("5effa061c2bcd85bf0a44041"), "name" : "Nike", "Desc" : "Nike description" }
+
+> db.brands.remove({"name":"Nike"});
+WriteResult({ "nRemoved" : 1 })
+
+> db.brands.find({"name":"Nike"});
+
+> db.brands.find();
+{ "_id" : ObjectId("5effa045c2bcd85bf0a4403f"), "name" : "Adidas", "Desc" : "About Adidas" }
+{ "_id" : ObjectId("5effa056c2bcd85bf0a44040"), "name" : "Gucci", "Desc" : "About Gucci" }

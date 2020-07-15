@@ -1,0 +1,26 @@
+databases -> collections -> documents {searched by find() }
+
+1. Set Environment variable
+
+
+2. Create Folder in C Drive
+	c:/data/db
+
+3. Open CMD and type to start mongo server
+	mongod
+    OR  mongod --port 27018
+
+4. Open CMD and type to connect mongo server
+	mongo
+    OR  mongo --port 27018
+
+5. Create a Database at client
+	use ecommercedb
+
+6. Create User under Database
+	db.createUser({
+		user: 'MyTester',
+		pwd: 'xyz123',
+		roles: [{role: 'readWrite', db: 'ecommercedb'},
+			{role: 'read', db: 'reporting'}]
+	});
